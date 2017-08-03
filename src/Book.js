@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
-export class Book extends Component {
+class Book extends Component {
 
   render() {
 
@@ -10,8 +9,8 @@ export class Book extends Component {
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={book && book.imageLinks && {
-            backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+          <div className="book-cover" style={{ width: 128, height: 193,
+            backgroundImage: `url(${book.imageLinks && book.imageLinks.thumbnail})` }}></div>
           <div className="book-shelf-changer">
             <select onChange={ (event) => MoveBook(book, event.target.value) } value={book.shelf}>
               <option value="move" disabled>Move to...</option>
@@ -29,3 +28,5 @@ export class Book extends Component {
   }
 }
 
+
+export default Book

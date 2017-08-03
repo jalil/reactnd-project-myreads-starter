@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import Book from './Book'
+import { Link } from 'react-router-dom'
 
-export class ListBooks extends Component {
+class ListBooks extends Component {
 
   render() {
 
-    let current = this.props.books.filter((book) => book.shelf === 'currentlyReading')
+    const { MoveBook } = this.props
 
     let want    = this.props.books.filter((book) => book.shelf === 'wantToRead')
-
+    let current = this.props.books.filter((book) => book.shelf === 'currentlyReading')
     let read    = this.props.books.filter((book) => book.shelf === 'read')
 
     return (
@@ -24,7 +25,7 @@ export class ListBooks extends Component {
                 <ol className="books-grid">
                   {current.map((book) => (
                     <li key={book.id}>
-                      <Book book={book} Move={Move} />
+                      <Book book={book} MoveBook={MoveBook} />
                     </li>
                   ))}
                 </ol>
@@ -36,7 +37,7 @@ export class ListBooks extends Component {
                 <ol className="books-grid">
                   {want.map((book) => (
                     <li key={book.id}>
-                      <Book book={book} Move={Move} />
+                      <Book book={book} MoveBook={MoveBook} />
                     </li>
                   ))}
                 </ol>
@@ -48,7 +49,7 @@ export class ListBooks extends Component {
                 <ol className="books-grid">
                   {read.map((book) => (
                     <li key={book.id}>
-                      <Book book={book} Move={Move} />
+                      <Book book={book} MoveBook={MoveBook} />
                     </li>
                   ))}
                 </ol>
@@ -57,9 +58,11 @@ export class ListBooks extends Component {
           </div>
         </div>
         <div className="open-search">
-          <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+          <Link to="/search">Add a book</Link>
         </div>
       </div>
     )
   }
 }
+
+export default ListBooks
